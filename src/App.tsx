@@ -1,9 +1,10 @@
-import './App.css'
+import { Container, Heading } from '@chakra-ui/react'
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Container maxW="container.xl">
+      <Heading>I'm a Heading</Heading>
+    </Container>
   )
 }
 
