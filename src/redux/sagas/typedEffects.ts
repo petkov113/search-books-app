@@ -10,5 +10,6 @@ import { Constants } from '../constants'
 export const put = <T extends Actions>(action: T): PutEffect<T> =>
   putUntyped(action)
 
-export const take = <T extends Constants>(action: T): TakeEffect =>
-  takeUntyped(action)
+export const take = <T extends Constants | Constants[]>(
+  action: T
+): TakeEffect => takeUntyped(action)

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { AtSignIcon, LockIcon } from '@chakra-ui/icons'
+import { AtSignIcon, InfoOutlineIcon, LockIcon } from '@chakra-ui/icons'
 import {
   Button,
   Checkbox,
@@ -12,9 +12,12 @@ import {
   InputLeftElement,
   ModalBody,
   ModalFooter,
+  Text,
 } from '@chakra-ui/react'
 import Modal from './Modal'
 import { EMAIL_REGEX } from '../constants/utilities'
+import { useAppDispatch, useAppSelector } from '../redux/store'
+import { AuthConstants } from '../redux/constants'
 
 type AuthFormProps = {
   isOpen: boolean
@@ -34,17 +37,27 @@ const AuthForm: FC<AuthFormProps> = ({ isOpen, onClose, isLogin }) => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting, isDirty, isValid },
+    formState: { errors, isDirty, isValid },
   } = useForm<Inputs>({
     mode: 'onChange',
   })
+
+  const { isLoading, error } = useAppSelector((store) => store.auth)
+  const dispatch = useAppDispatch()
 
   const onPaste = (e: any) => {
     e.preventDefault()
     return false
   }
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
+    dispatch({ type: AuthConstants.AUTH_REQUEST, id: email, password })
+  }
+
+  const onCancel = () => {
+    dispatch({ type: AuthConstants.AUTH_CANCEL })
+    onClose()
+  }
 
   return (
     <Modal
@@ -52,9 +65,9 @@ const AuthForm: FC<AuthFormProps> = ({ isOpen, onClose, isLogin }) => {
       onClose={onClose}
       title={isLogin ? 'Log In' : 'Sign Up'}
     >
-      <ModalBody pb={6}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl isInvalid={!!errors.email}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <ModalBody pb={6}>
+          <FormControl isInvalid={Boolean(errors.email)}>
             <FormLabel htmlFor="email" color="gray.200">
               Email
             </FormLabel>
@@ -160,20 +173,26 @@ const AuthForm: FC<AuthFormProps> = ({ isOpen, onClose, isLogin }) => {
               </FormControl>
             </>
           )}
-        </form>
-      </ModalBody>
-      <ModalFooter>
-        <Button
-          disabled={!isDirty || !isValid}
-          colorScheme="blue"
-          mr={3}
-          isLoading={isSubmitting}
-          type="submit"
-        >
-          Sumbmit
-        </Button>
-        <Button onClick={onClose}>Cancel</Button>
-      </ModalFooter>
+          {error && (
+            <Text color="red.400" pt={4} align="center">
+              <InfoOutlineIcon h={5} w={5} mr={2} />
+              {error}
+            </Text>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            disabled={!isDirty || !isValid || isLoading}
+            colorScheme="blue"
+            mr={3}
+            isLoading={isLoading}
+            type="submit"
+          >
+            Sumbmit
+          </Button>
+          <Button onClick={onCancel}>Cancel</Button>
+        </ModalFooter>
+      </form>
     </Modal>
   )
 }

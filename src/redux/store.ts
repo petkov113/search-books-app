@@ -3,6 +3,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { Actions } from './actions'
 import { rootReducer, RootState } from './reducers.ts/root.reducer'
+import { rootSaga } from './sagas/root.saga'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -13,6 +14,8 @@ export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 )
+
+sagaMiddleware.run(rootSaga)
 
 export function useAppSelector<T>(fn: (store: RootState) => T): T {
   return fn(useSelector((x: RootState) => x))
