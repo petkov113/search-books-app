@@ -21,10 +21,11 @@ export function* authSaga() {
     yield put({ type: AuthConstants.AUTH_START })
 
     const task: Task = yield fork(authorize, id, password)
-    
+
     const nextAction: AuthCancel | AuthLogout = yield take([
       AuthConstants.AUTH_LOGOUT,
       AuthConstants.AUTH_CANCEL,
+      AuthConstants.AUTH_FAILURE,
     ])
 
     if (nextAction.type === AuthConstants.AUTH_CANCEL) {
