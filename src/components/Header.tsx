@@ -41,16 +41,19 @@ const Header = () => {
       <Flex
         p={3}
         width="100%"
-        left={0}
-        borderBottom="1px"
-        borderColor="gray.700"
-        pos="fixed"
+        bg='gray.800'
       >
         <StarIcon w={7} h={7} color="green.300" />
         <Spacer />
         <Box>
           {isAuth ? (
-            <Button colorScheme="red" mr="4" variant="outline" onClick={logout}>
+            <Button
+              colorScheme="red"
+              mr="4"
+              variant="outline"
+              onClick={logout}
+              marginRight={0}
+            >
               Logout
             </Button>
           ) : (
