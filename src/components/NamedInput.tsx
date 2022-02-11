@@ -1,5 +1,5 @@
 import { InputGroup, InputLeftAddon, Input } from '@chakra-ui/react'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type NamedInputProps = {
   name: string

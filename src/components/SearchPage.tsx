@@ -1,5 +1,12 @@
-import { Center, GridItem, SimpleGrid, Spinner, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import {
+  Center,
+  GridItem,
+  SimpleGrid,
+  Spinner,
+  VStack,
+  Text,
+} from '@chakra-ui/react'
 import { BooksConstants } from '../redux/constants'
 import { useAppDispatch, useAppSelector } from '../redux/store'
 import BookCard from './BookCard'
@@ -55,7 +62,13 @@ const SearchPage = () => {
           w="100%"
           alignContent="center"
         >
-          {isLoading ? (
+          {!query ? (
+            <Center>
+              <Text fontSize="xl" color='purple.400'>
+                All of the books in the world are here!
+              </Text>
+            </Center>
+          ) : isLoading ? (
             <Center>
               <Spinner size="xl" color="teal.100" />
             </Center>

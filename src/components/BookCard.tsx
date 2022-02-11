@@ -1,5 +1,5 @@
-import { Box, HStack, Image, Link, Tag } from '@chakra-ui/react'
 import { FC } from 'react'
+import { Box, HStack, Image } from '@chakra-ui/react'
 import { BOOK_COVER_URL, COVERS_URL } from '../constants/api'
 import { Book } from '../redux/sagas/books.saga'
 import BookLinks from './BookLinks'
