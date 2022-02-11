@@ -1,13 +1,6 @@
-import { SearchIcon } from '@chakra-ui/icons'
-import {
-  Container,
-  Grid,
-  GridItem,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from '@chakra-ui/react'
+import { Container, Grid, GridItem } from '@chakra-ui/react'
 import Header from './components/Header'
+import SearchPage from './components/SearchPage'
 
 function App() {
   return (
@@ -17,20 +10,7 @@ function App() {
           <Header />
         </GridItem>
         <GridItem bg="gray.700"></GridItem>
-        <GridItem bg="gray.900" p={3}>
-          <InputGroup color="gray.100">
-            <InputLeftElement
-              pointerEvents="none"
-              children={<SearchIcon color="gray.400" />}
-            />
-            <Input
-              placeholder="Search for books"
-              bg="gray.700"
-              border="none"
-              width="400px"
-            />
-          </InputGroup>
-        </GridItem>
+        <SearchPage />
       </Grid>
     </Container>
   )

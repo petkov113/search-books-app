@@ -4,7 +4,7 @@ import {
   PutEffect,
   TakeEffect,
 } from 'redux-saga/effects'
-import { Actions } from '../actions'
+import { Actions } from '../actionTypes'
 import { Constants } from '../constants'
 
 export const put = <T extends Actions>(action: T): PutEffect<T> =>
