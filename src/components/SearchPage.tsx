@@ -9,8 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { BooksConstants } from '../redux/constants'
 import { useAppDispatch, useAppSelector } from '../redux/store'
-import BookCard from './BookCard'
-import NamedInput from './NamedInput'
+import { BookCard, NamedInput } from './'
 
 const SearchPage = () => {
   const [titleValue, setTitleValue] = useState('')
@@ -64,7 +63,7 @@ const SearchPage = () => {
         >
           {!query ? (
             <Center>
-              <Text fontSize="xl" color='purple.400'>
+              <Text fontSize="xl" color="purple.400">
                 All of the books in the world are here!
               </Text>
             </Center>

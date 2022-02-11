@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import AboutPage from './components/AboutPage'
-import Layout from './components/Layout'
-import SearchPage from './components/SearchPage'
+import { AboutPage, Layout, SearchPage } from './components'
 
 function App() {
   return (

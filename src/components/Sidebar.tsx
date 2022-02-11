@@ -1,5 +1,5 @@
 import { QuestionOutlineIcon, SearchIcon } from '@chakra-ui/icons'
-import { Center, Circle, GridItem, Tooltip, VStack } from '@chakra-ui/react'
+import { Circle, GridItem, Tooltip, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 const linkHoverStyles = { backgroundColor: 'teal.500', transition: 'all .2s' }

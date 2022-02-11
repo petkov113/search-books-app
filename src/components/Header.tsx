@@ -8,10 +8,10 @@ import {
   Spacer,
   useDisclosure,
 } from '@chakra-ui/react'
-import AuthForm from './AuthForm'
 import { useAppDispatch } from '../redux/store'
 import { AuthConstants } from '../redux/constants'
 import useAuthState from '../hooks/useAuthState'
+import { AuthForm } from './'
 
 enum AuthType {
   LOG_IN = 'login',

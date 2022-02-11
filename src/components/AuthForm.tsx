@@ -14,7 +14,7 @@ import {
   ModalFooter,
   Text,
 } from '@chakra-ui/react'
-import Modal from './Modal'
+import { Modal } from './'
 import { useAppDispatch, useAppSelector } from '../redux/store'
 import { AuthConstants } from '../redux/constants'
 import { EMAIL_REGEX } from '../constants/api.constants'
