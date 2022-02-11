@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 import { StarIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Spacer, useDisclosure } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  GridItem,
+  Spacer,
+  useDisclosure,
+} from '@chakra-ui/react'
 import AuthForm from './AuthForm'
 import { useAppDispatch } from '../redux/store'
 import { AuthConstants } from '../redux/constants'
@@ -37,12 +44,8 @@ const Header = () => {
   }, [isAuth, onCloseAuthModal])
 
   return (
-    <>
-      <Flex
-        p={3}
-        width="100%"
-        bg='gray.800'
-      >
+    <GridItem gridColumn="1/3">
+      <Flex p={3} width="100%" bg="gray.800">
         <StarIcon w={7} h={7} color="green.300" />
         <Spacer />
         <Box>
@@ -80,7 +83,7 @@ const Header = () => {
         onClose={onCloseAuthModal}
         isLogin={authType === AuthType.LOG_IN}
       />
-    </>
+    </GridItem>
   )
 }
 
