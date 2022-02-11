@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { call, cancelled, StrictEffect, takeLatest } from 'redux-saga/effects'
-import { SEARCH_URL } from '../../constants/api'
-import { BooksConstants } from '../constants'
-import { SearchBooks } from '../actionTypes/books.types'
-import { put } from './typedEffects'
+import { SEARCH_URL } from '../../../constants/api.constants'
+import { BooksConstants } from '../../constants'
+import { SearchBooks } from '../../actionTypes/books.types'
+import { put } from '../utils/typedEffects'
 
 type BooksApiResponse = { data: { numFound: number; docs: any[] } }
 export type Book = {

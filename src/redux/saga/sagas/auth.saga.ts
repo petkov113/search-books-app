@@ -1,8 +1,8 @@
 import { call, cancel, fork } from 'redux-saga/effects'
-import * as AUTH_API from '../../api/auth.api'
-import { AuthCancel, AuthLogout, AuthRequest } from '../actionTypes/auth.types'
-import { AuthConstants } from '../constants/auth.constants'
-import { put, take } from './typedEffects'
+import * as AUTH_API from '../../../api/auth.api'
+import { AuthCancel, AuthLogout, AuthRequest } from '../../actionTypes/auth.types'
+import { AuthConstants } from '../../constants/auth.constants'
+import { put, take } from '../utils/typedEffects'
 import { Task } from 'redux-saga'
 
 function* authorize(id: string, password: string) {

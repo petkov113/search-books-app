@@ -15,9 +15,9 @@ import {
   Text,
 } from '@chakra-ui/react'
 import Modal from './Modal'
-import { EMAIL_REGEX } from '../constants/utilities'
 import { useAppDispatch, useAppSelector } from '../redux/store'
 import { AuthConstants } from '../redux/constants'
+import { EMAIL_REGEX } from '../constants/api.constants'
 
 type AuthFormProps = {
   isOpen: boolean
