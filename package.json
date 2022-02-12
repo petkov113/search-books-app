@@ -33,9 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --max-warnings=0",
-    "prettier:fix": "prettier --write",
-    "prettier:check": "prettier --check ."
+    "pre-commit": "lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -61,9 +59,9 @@
     "prettier": "^2.5.1"
   },
   "lint-staged": {
-    "src/*.{ts,tsx}": [
-      "yarn prettier:fix",
-      "yarn lint"
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "prettier --ignore-unknown --write",
+      "eslint --fix . --max-warnings=0"
     ]
   }
 }
