@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { StarIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Center,
   Flex,
   GridItem,
+  Heading,
   Spacer,
   useDisclosure,
 } from '@chakra-ui/react'
@@ -46,7 +47,11 @@ const Header = () => {
   return (
     <GridItem gridColumn="1/3">
       <Flex p={3} width="100%" bg="gray.800">
-        <StarIcon w={7} h={7} color="green.300" />
+        <Center>
+          <Heading as="h1" size="lg" color="purple.400">
+            Book App
+          </Heading>
+        </Center>
         <Spacer />
         <Box>
           {isAuth ? (

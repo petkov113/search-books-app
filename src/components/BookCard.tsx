@@ -10,7 +10,13 @@ type BookCardProps = {
 
 const BookCard: FC<BookCardProps> = ({ book }) => {
   return (
-    <Box maxW="sm" borderRadius="lg" overflow="hidden" bg="purple.900">
+    <Box
+      maxW="sm"
+      borderRadius="lg"
+      overflow="hidden"
+      bg="purple.900"
+      cursor="pointer"
+    >
       <Box
         backgroundImage={`url(${BOOK_COVER_URL})`}
         backgroundSize="cover"

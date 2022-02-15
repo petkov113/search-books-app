@@ -1,5 +1,6 @@
-import { Link, Tag, Wrap } from '@chakra-ui/react'
-import React, { FC } from 'react'
+import { FC } from 'react'
+import { Link, Wrap } from '@chakra-ui/react'
+import { Tag } from '.'
 
 type BookLinksProps = {
   amazonId?: string
@@ -19,9 +20,7 @@ const BookLinks: FC<BookLinksProps> = ({
     <Wrap mt={5} justifyContent="space-between">
       {amazonId && (
         <Link href={`https://www.amazon.com/s?k=${amazonId}`} isExternal>
-          <Tag variant="solid" colorScheme="teal">
-            Amazon
-          </Tag>
+          <Tag text="Amazon" />
         </Link>
       )}
       {goodreadsId && (
@@ -29,16 +28,12 @@ const BookLinks: FC<BookLinksProps> = ({
           href={`https://www.goodreads.com/book/show/${goodreadsId}`}
           isExternal
         >
-          <Tag variant="solid" colorScheme="teal">
-            GoodReads
-          </Tag>
+          <Tag text="GoodReads" />
         </Link>
       )}
       {isbn && (
         <Link href={`https://openlibrary.org/isbn/${isbn}`} isExternal>
-          <Tag variant="solid" colorScheme="teal">
-            OL
-          </Tag>
+          <Tag text="OL" />
         </Link>
       )}
       {librarythingId && (
@@ -46,9 +41,7 @@ const BookLinks: FC<BookLinksProps> = ({
           href={`https://www.librarything.com/work/${librarythingId}`}
           isExternal
         >
-          <Tag variant="solid" colorScheme="teal">
-            LibraryThing
-          </Tag>
+          <Tag text="LibraryThing" />
         </Link>
       )}
     </Wrap>
