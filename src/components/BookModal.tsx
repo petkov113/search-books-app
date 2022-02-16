@@ -1,15 +1,6 @@
 import { FC } from 'react'
-import {
-  ModalBody,
-  Text,
-  Box,
-  Image,
-  VStack,
-  Flex,
-  Wrap,
-  Tag,
-} from '@chakra-ui/react'
-import { BookLinks, Modal } from '.'
+import { ModalBody, Text, Box, Image, VStack, Flex } from '@chakra-ui/react'
+import { BookLinks, Modal, BookSection } from '.'
 import { Book } from '../redux/saga/sagas/books.saga'
 import { BOOK_COVER_URL, COVERS_URL } from '../constants/api.constants'
 
@@ -29,30 +20,31 @@ const BookModal: FC<BookModalProps> = ({ isOpen, onClose, book }) => {
     >
       <ModalBody pb={6} color="gray.200">
         <Flex wrap="wrap" justifyContent="center" pb={3}>
-          <Box
-            backgroundImage={`url(${BOOK_COVER_URL})`}
-            backgroundSize="cover"
-            backgroundPosition="center"
-            maxW="250px"
-            height="300px"
-            mb={3}
-          >
-            {book.isbn?.[0] && (
-              <Image
-                src={`${COVERS_URL}${book.isbn?.[0]}-L.jpg`}
-                alt="book cover"
-                width="100%"
-                objectFit="cover"
-                height="300px"
-              />
-            )}
-          </Box>
-          <VStack pr={3} pl={3} flex="1" spacing={25}>
+          <VStack mb={1}>
             <Box
-              color="gray.400"
+              backgroundImage={`url(${BOOK_COVER_URL})`}
+              backgroundSize="cover"
+              backgroundPosition="center"
+              maxW="250px"
+              height="300px"
+              mb={3}
+            >
+              {book.isbn?.[0] && (
+                <Image
+                  src={`${COVERS_URL}${book.isbn?.[0]}-L.jpg`}
+                  alt="book cover"
+                  width="100%"
+                  objectFit="cover"
+                  height="300px"
+                />
+              )}
+            </Box>
+            <Box
+              color="gray.300"
               fontWeight="semibold"
               letterSpacing="wide"
-              fontSize="md"
+              fontSize="l"
+              textAlign="center"
               textTransform="uppercase"
             >
               {book.author_name?.[0] || 'Unknown'}{' '}
@@ -60,6 +52,8 @@ const BookModal: FC<BookModalProps> = ({ isOpen, onClose, book }) => {
                 <span>&bull; {book.first_publish_year}</span>
               )}
             </Box>
+          </VStack>
+          <VStack pr={3} pl={3} flex="1" spacing={25}>
             <VStack spacing={2}>
               <Text>Links</Text>
               <BookLinks
@@ -70,24 +64,10 @@ const BookModal: FC<BookModalProps> = ({ isOpen, onClose, book }) => {
               />
             </VStack>
             {book.subject?.length && (
-              <VStack spacing={2}>
-                <Text>Subjects</Text>
-                <Wrap>
-                  {book.subject.slice(0, 4).map((subject) => (
-                    <Tag>{subject}</Tag>
-                  ))}
-                </Wrap>
-              </VStack>
+              <BookSection title="Subjects" items={book.subject} />
             )}
             {book.person?.length && (
-              <VStack spacing={2}>
-                <Text>Persons</Text>
-                <Wrap>
-                  {book.person.slice(0, 4).map((person) => (
-                    <Tag colorScheme="purple">{person}</Tag>
-                  ))}
-                </Wrap>
-              </VStack>
+              <BookSection title="Persons" items={book.person} />
             )}
           </VStack>
         </Flex>
