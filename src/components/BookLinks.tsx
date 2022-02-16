@@ -15,7 +15,6 @@ const BookLinks: FC<BookLinksProps> = ({
   goodreadsId,
   librarythingId,
 }) => {
-  console.log(amazonId)
   return (
     <Wrap mt={5} justifyContent="space-between">
       {amazonId && (

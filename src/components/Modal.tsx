@@ -5,6 +5,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  ModalProps as ChakraModalProps,
 } from '@chakra-ui/react'
 
 type ModalProps = {
@@ -13,18 +14,25 @@ type ModalProps = {
   onClose: () => void
 }
 
-const Modal: FC<ModalProps> = ({
+const Modal: FC<ModalProps & ChakraModalProps> = ({
   title,
   children,
   onClose,
   isOpen = false,
+  ...props
 }) => {
   return (
-    <ChakraModal isOpen={isOpen} onClose={onClose} closeOnOverlayClick closeOnEsc>
+    <ChakraModal
+      isOpen={isOpen}
+      onClose={onClose}
+      closeOnOverlayClick
+      closeOnEsc
+      {...props}
+    >
       <ModalOverlay />
-      <ModalContent backgroundColor='gray.700'>
-        <ModalHeader color='teal.200'>{title}</ModalHeader>
-        <ModalCloseButton color='gray.100' />
+      <ModalContent backgroundColor="gray.700">
+        <ModalHeader color="teal.200">{title}</ModalHeader>
+        <ModalCloseButton color="gray.100" />
         {children}
       </ModalContent>
     </ChakraModal>

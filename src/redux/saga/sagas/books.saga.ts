@@ -6,6 +6,7 @@ import { SearchBooks } from '../../actionTypes/books.types'
 import { put } from '../utils/typedEffects'
 
 type BooksApiResponse = { data: { numFound: number; docs: any[] } }
+
 export type Book = {
   key: string
   title: string
@@ -18,6 +19,9 @@ export type Book = {
   id_amazon: string[]
   id_goodreads: string[]
   id_librarything: string[]
+  first_sentence: string[]
+  person: string[]
+  place: string[]
 }
 
 function* fetchBooks(
@@ -32,7 +36,7 @@ function* fetchBooks(
       `${SEARCH_URL}/${encodeURI(action.query)}`,
       { signal: controller.signal }
     )
-
+    console.log(response)
     yield put({ type: BooksConstants.SET_BOOKS, books: response.data.docs })
   } catch (e) {
     console.log(e)
