@@ -6,9 +6,9 @@ const Sidebar = () => {
   return (
     <GridItem as="nav" bg="gray.700" pt={3}>
       <VStack as="ul">
-        <LinkIcon to="/explore" icon={<ViewIcon />} />
-        <LinkIcon to="/" icon={<SearchIcon />} />
-        <LinkIcon to="/about" icon={<QuestionOutlineIcon />} />
+        <LinkIcon to="/explore" title="Explore" icon={<ViewIcon />} />
+        <LinkIcon to="/" title="Search" icon={<SearchIcon />} />
+        <LinkIcon to="/about" title="About" icon={<QuestionOutlineIcon />} />
       </VStack>
     </GridItem>
   )

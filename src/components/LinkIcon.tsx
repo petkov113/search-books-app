@@ -4,17 +4,11 @@ import { Link } from 'react-router-dom'
 
 const linkHoverStyles = { backgroundColor: 'teal.500', transition: 'all .2s' }
 
-type LinkIconProps = { to: string; icon: ReactElement }
+type LinkIconProps = { to: string; icon: ReactElement; title: string }
 
-const LinkIcon: FC<LinkIconProps> = ({ to, icon }) => {
+const LinkIcon: FC<LinkIconProps> = ({ to, icon, title }) => {
   return (
-    <Tooltip
-      label="Discover"
-      fontSize="md"
-      placement="right"
-      bg="teal"
-      hasArrow
-    >
+    <Tooltip label={title} fontSize="md" placement="right" bg="teal" hasArrow>
       <Link to={to}>
         <Circle
           size="40px"
