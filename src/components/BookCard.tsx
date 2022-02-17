@@ -39,6 +39,7 @@ const BookCard: FC<BookCardProps> = ({ book }) => {
               width="100%"
               objectFit="cover"
               height="300px"
+              loading="lazy"
             />
           )}
         </Box>
