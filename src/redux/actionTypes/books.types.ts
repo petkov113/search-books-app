@@ -15,10 +15,15 @@ export type SetBooks = {
   books: Book[]
 }
 
+export type SetSubjects = {
+  type: BooksConstants.SET_SUBJECTS
+  subjects: string[]
+}
+
 export type BooksState = Readonly<{
   books: Book[]
   isLoading: boolean
+  subjects: string[]
 }>
 
-export type BooksActions = SearchBooks | SetBooks | SearchStart
-
+export type BooksActions = SearchBooks | SetBooks | SearchStart | SetSubjects

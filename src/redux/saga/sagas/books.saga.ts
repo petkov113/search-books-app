@@ -1,6 +1,12 @@
 import axios from 'axios'
-import { call, cancelled, StrictEffect, takeLatest } from 'redux-saga/effects'
-import { SEARCH_URL } from '../../../constants/api.constants'
+import {
+  all,
+  call,
+  cancelled,
+  StrictEffect,
+  takeLatest,
+} from 'redux-saga/effects'
+import { SEARCH_URL } from '../../../constants'
 import { BooksConstants } from '../../constants'
 import { SearchBooks } from '../../actionTypes/books.types'
 import { put } from '../utils/typedEffects'
@@ -33,7 +39,7 @@ function* fetchBooks(
 
     const response = yield call(
       axios.get,
-      `${SEARCH_URL}/${encodeURI(action.query)}`,
+      `${SEARCH_URL}${encodeURI(action.query)}`,
       { signal: controller.signal }
     )
     console.log(response)
@@ -48,5 +54,5 @@ function* fetchBooks(
 }
 
 export function* booksSaga() {
-  yield takeLatest(BooksConstants.SEARCH_BOOKS, fetchBooks)
+  yield all([takeLatest(BooksConstants.SEARCH_BOOKS, fetchBooks)])
 }

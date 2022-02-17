@@ -17,7 +17,7 @@ import {
 import { Modal } from './'
 import { useAppDispatch, useAppSelector } from '../redux/store'
 import { AuthConstants } from '../redux/constants'
-import { EMAIL_REGEX } from '../constants/api.constants'
+import { EMAIL_REGEX } from '../constants'
 
 type AuthFormProps = {
   isOpen: boolean

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { ModalBody, Text, Box, Image, VStack, Flex } from '@chakra-ui/react'
 import { BookLinks, Modal, BookSection } from '.'
 import { Book } from '../redux/saga/sagas/books.saga'
-import { BOOK_COVER_URL, COVERS_URL } from '../constants/api.constants'
+import { BOOK_COVER_URL, COVERS_URL } from '../constants'
 
 type BookModalProps = {
   book: Book

@@ -1,31 +1,19 @@
 import { useEffect, useState } from 'react'
-import {
-  Center,
-  GridItem,
-  SimpleGrid,
-  Spinner,
-  VStack,
-  Text,
-} from '@chakra-ui/react'
+import { Center, GridItem, SimpleGrid, VStack, Text } from '@chakra-ui/react'
 import { BooksConstants } from '../redux/constants'
 import { useAppDispatch, useAppSelector } from '../redux/store'
-import { BookCard, NamedInput } from './'
+import { BookCard, Loader, NamedInput } from './'
+import { createSearchQuery } from '../utils'
 
 const SearchPage = () => {
   const [titleValue, setTitleValue] = useState('')
   const [authorValue, setAuthorValue] = useState('')
   const [subjectValue, setSubjectValue] = useState('')
+
   const { books, isLoading } = useAppSelector((state) => state.books)
   const dispatch = useAppDispatch()
 
-  const query = [
-    { name: 'title', value: titleValue },
-    { name: 'author', value: authorValue },
-    { name: 'subject', value: subjectValue },
-  ].reduce(
-    (acc, { name, value }) => (value ? `${acc}&${name}=${value}` : acc),
-    ''
-  )
+  const query = createSearchQuery(titleValue, authorValue, subjectValue)
 
   useEffect(() => {
     query && dispatch({ type: BooksConstants.SEARCH_BOOKS, query })
@@ -68,9 +56,7 @@ const SearchPage = () => {
               </Text>
             </Center>
           ) : isLoading ? (
-            <Center>
-              <Spinner size="xl" color="teal.100" />
-            </Center>
+            <Loader />
           ) : (
             books.map((book) => <BookCard key={book.key} book={book} />)
           )}

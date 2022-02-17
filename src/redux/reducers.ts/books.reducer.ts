@@ -4,6 +4,7 @@ import { BooksConstants } from '../constants'
 const initialState: BooksState = {
   books: [],
   isLoading: false,
+  subjects: [],
 }
 
 export default function booksReducer(
@@ -21,6 +22,11 @@ export default function booksReducer(
         ...state,
         books: action.books,
         isLoading: false,
+      }
+    case BooksConstants.SET_SUBJECTS:
+      return {
+        ...state,
+        subjects: action.subjects,
       }
     default:
       return state
