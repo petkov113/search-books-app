@@ -1,5 +1,5 @@
 import { BooksConstants } from '../constants'
-import { Book } from '../saga/sagas/books.saga'
+import { Book } from '../types'
 
 export type SearchBooks = {
   type: BooksConstants.SEARCH_BOOKS
@@ -20,11 +20,5 @@ export type SetSubjects = {
   type: BooksConstants.SET_SUBJECTS
   subjects: string[]
 }
-
-export type BooksState = Readonly<{
-  books: Book[]
-  isLoading: boolean
-  subjects: string[]
-}>
 
 export type BooksActions = SearchBooks | SetBooks | SearchStart | SetSubjects

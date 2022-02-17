@@ -1,5 +1,6 @@
-import { BooksActions, BooksState } from '../actionTypes/books.types'
+import { BooksActions } from '../actionTypes/booksActions.types'
 import { BooksConstants } from '../constants'
+import { BooksState } from '../types'
 
 const initialState: BooksState = {
   books: [],
