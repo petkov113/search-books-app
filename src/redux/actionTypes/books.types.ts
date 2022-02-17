@@ -4,6 +4,7 @@ import { Book } from '../saga/sagas/books.saga'
 export type SearchBooks = {
   type: BooksConstants.SEARCH_BOOKS
   query: string
+  page?: number
 }
 
 export type SearchStart = {

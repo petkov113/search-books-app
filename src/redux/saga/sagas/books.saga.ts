@@ -3,15 +3,17 @@ import {
   all,
   call,
   cancelled,
+  select,
   StrictEffect,
   takeLatest,
 } from 'redux-saga/effects'
-import { SEARCH_URL } from '../../../constants'
 import { BooksConstants } from '../../constants'
 import { SearchBooks } from '../../actionTypes/books.types'
 import { put } from '../utils/typedEffects'
+import { RootState } from '../../reducers.ts/root.reducer'
+import { createGeneralQuery } from '../../../utils'
 
-type BooksApiResponse = { data: { numFound: number; docs: any[] } }
+type BooksApiResponse = { data: { numFound: number; docs: Book[] } }
 
 export type Book = {
   key: string
@@ -30,22 +32,29 @@ export type Book = {
   place: string[]
 }
 
-function* fetchBooks(
-  action: SearchBooks
-): Generator<StrictEffect, any, BooksApiResponse> {
+function* fetchBooks(action: SearchBooks): Generator<StrictEffect, any, any> {
   const controller = new AbortController()
+
   try {
     yield put({ type: BooksConstants.SEARCH_START })
 
-    const response = yield call(
+    const { page, query } = action
+
+    const response: BooksApiResponse = yield call(
       axios.get,
-      `${SEARCH_URL}${encodeURI(action.query)}`,
-      { signal: controller.signal }
+      createGeneralQuery(query),
+      { signal: controller.signal, params: { page } }
     )
-    console.log(response)
-    yield put({ type: BooksConstants.SET_BOOKS, books: response.data.docs })
-  } catch (e) {
-    console.log(e)
+
+    const books: Book[] = yield select((state: RootState) => state.books.books)
+    const updatedBooks = page
+      ? [...books, ...response.data.docs]
+      : response.data.docs
+
+    yield put({
+      type: BooksConstants.SET_BOOKS,
+      books: updatedBooks,
+    })
   } finally {
     if (yield cancelled()) {
       controller.abort()

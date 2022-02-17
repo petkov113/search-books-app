@@ -1,3 +1,5 @@
+import { SEARCH_URL } from '../constants'
+
 export const createSearchQuery = (
   titleValue: string,
   authorValue: string,
@@ -19,3 +21,6 @@ export const createExploreQuery = (subjects: string[]) =>
       'q='
     )
     .concat('&mode=everything')
+
+export const createGeneralQuery = (query: string) =>
+  `${SEARCH_URL}${encodeURI(query)}`
