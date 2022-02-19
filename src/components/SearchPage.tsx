@@ -51,7 +51,7 @@ const SearchPage = () => {
           {!query ? (
             <Center>
               <Text fontSize="xl" color="purple.400">
-                All of the books in the world are here!
+                All of the books in the world are here! 🎉
               </Text>
             </Center>
           ) : isLoading ? (

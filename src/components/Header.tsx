@@ -50,7 +50,7 @@ const Header = () => {
       <Flex p={3} width="100%" bg="gray.800">
         <Center>
           <Heading as="h1" size="lg" color="purple.400">
-            Book App
+            📚 Book App
           </Heading>
         </Center>
         <Spacer />

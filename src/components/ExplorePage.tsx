@@ -28,7 +28,7 @@ const ExplorePage = () => {
     <GridItem bg="gray.900" p={6} overflow="auto">
       <VStack spacing={6}>
         <Center>
-          <Heading color="teal.200">What are your interests?</Heading>
+          <Heading color="teal.200">What are your interests? 🤔</Heading>
         </Center>
         <Wrap spacing={4}>
           {CATEGORIES.map((category) => (
