@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Center, GridItem, SimpleGrid, VStack, Text } from '@chakra-ui/react'
-import { BookCard, Loader, NamedInput } from './'
-import { createSearchQuery } from '../utils'
-import { useBooks } from '../hooks'
+
+import { BookCard, Loader, NamedInput } from 'components'
+import { createSearchQuery } from 'utils'
+import { useBooks } from 'hooks'
 
 const SearchPage = () => {
   const [titleValue, setTitleValue] = useState('')

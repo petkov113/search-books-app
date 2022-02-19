@@ -1,6 +1,6 @@
-import { BooksActions } from '../actionTypes/booksActions.types'
-import { BooksConstants } from '../constants'
-import { BooksState } from '../types'
+import { BooksActions } from 'redux/actionTypes/booksActions.types'
+import { BooksConstants } from 'redux/constants'
+import { BooksState } from 'redux/types'
 
 const initialState: BooksState = {
   books: [],

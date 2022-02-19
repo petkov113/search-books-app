@@ -8,9 +8,10 @@ import {
   VStack,
   Wrap,
 } from '@chakra-ui/react'
-import { BookCard, Loader } from '.'
-import { CATEGORIES } from '../constants'
-import { useBooks } from '../hooks'
+import { BookCard, Loader } from 'components'
+
+import { CATEGORIES } from '@constants'
+import { useBooks } from 'hooks'
 
 const ExplorePage = () => {
   const { books, isLoading, subjects, setSubjects } = useBooks()

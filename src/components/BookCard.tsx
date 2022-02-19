@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import { Book } from 'redux/types'
 import { Box, Image, useDisclosure } from '@chakra-ui/react'
-import { BOOK_COVER_URL, COVERS_URL } from '../constants'
-import { Book } from '../redux/types'
-import BookModal from './BookModal'
-import { BookLinks } from './'
+
+import { BOOK_COVER_URL, COVERS_URL } from '@constants'
+import { BookLinks, BookModal } from 'components'
 
 type BookCardProps = {
   book: Book

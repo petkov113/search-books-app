@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { Actions } from './actionTypes'
-import { rootReducer, RootState } from './reducers.ts/root.reducer'
-import { rootSaga } from './saga/sagas/root.saga'
+
+import { rootReducer, RootState } from 'redux/reducers/root.reducer'
+import { rootSaga } from 'redux/saga/sagas/root.saga'
+import { Actions } from 'redux/actionTypes'
 
 const sagaMiddleware = createSagaMiddleware()
 

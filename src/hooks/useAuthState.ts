@@ -1,4 +1,4 @@
-import { useAppSelector } from '../redux/store'
+import { useAppSelector } from 'redux/store'
 
 const useAuthState = () => {
   const { token } = useAppSelector((store) => store.auth)

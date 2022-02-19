@@ -8,8 +8,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 
 import App from './App'
-import theme from './styles/theme'
-import { store } from './redux/store'
+import theme from 'styles/theme'
+import { store } from 'redux/store'
 
 ReactDOM.render(
   <React.StrictMode>

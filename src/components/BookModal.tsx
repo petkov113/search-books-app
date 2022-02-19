@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import { ModalBody, Text, Box, Image, VStack, Flex } from '@chakra-ui/react'
-import { BookLinks, Modal, BookSection } from '.'
-import { BOOK_COVER_URL, COVERS_URL } from '../constants'
-import { Book } from '../redux/types'
+import { Book } from 'redux/types'
+
+import { BOOK_COVER_URL, COVERS_URL } from '@constants'
+import { BookLinks, BookSection, Modal } from 'components'
 
 type BookModalProps = {
   book: Book

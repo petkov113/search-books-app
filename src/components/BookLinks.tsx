@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Link, Wrap } from '@chakra-ui/react'
-import { Tag } from '.'
+
+import { Tag } from 'components'
 
 type BookLinksProps = {
   amazonId?: string

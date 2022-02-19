@@ -1,6 +1,7 @@
 import { Container, Grid } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
-import { Header, Sidebar } from './'
+
+import { Header, Sidebar } from 'components'
 
 const Layout = () => {
   return (

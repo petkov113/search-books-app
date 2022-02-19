@@ -1,6 +1,7 @@
 import { QuestionOutlineIcon, SearchIcon, ViewIcon } from '@chakra-ui/icons'
 import { GridItem, VStack } from '@chakra-ui/react'
-import { LinkIcon } from '.'
+
+import { LinkIcon } from 'components'
 
 const Sidebar = () => {
   return (

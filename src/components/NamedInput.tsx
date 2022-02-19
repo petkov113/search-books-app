@@ -1,5 +1,5 @@
-import { InputGroup, InputLeftAddon, Input } from '@chakra-ui/react'
 import { FC } from 'react'
+import { InputGroup, InputLeftAddon, Input } from '@chakra-ui/react'
 
 type NamedInputProps = {
   name: string
@@ -8,7 +8,12 @@ type NamedInputProps = {
   onChange: (value: string) => void
 }
 
-const NamedInput: FC<NamedInputProps> = ({ name, value, onChange, placeholder }) => {
+const NamedInput: FC<NamedInputProps> = ({
+  name,
+  value,
+  onChange,
+  placeholder,
+}) => {
   return (
     <InputGroup>
       <InputLeftAddon

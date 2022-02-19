@@ -1,4 +1,4 @@
-import { SEARCH_URL } from '../constants'
+import { SEARCH_URL } from '@constants'
 
 export const createSearchQuery = (
   titleValue: string,

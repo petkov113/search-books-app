@@ -7,13 +7,14 @@ import {
   select,
   StrictEffect,
 } from 'redux-saga/effects'
-import { BooksConstants } from '../../constants'
-import { SearchBooks } from '../../actionTypes/booksActions.types'
-import { put, take } from '../utils/typedEffects'
-import { RootState } from '../../reducers.ts/root.reducer'
-import { createGeneralQuery, isValidQuery } from '../../../utils'
-import { Book, BooksApiResponse } from '../../types'
 import { Task } from 'redux-saga'
+
+import { SearchBooks } from 'redux/actionTypes/booksActions.types'
+import { BooksConstants } from 'redux/constants'
+import { RootState } from 'redux/reducers/root.reducer'
+import { BooksApiResponse, Book } from 'redux/types'
+import { createGeneralQuery, isValidQuery } from 'utils'
+import { put, take } from '../utils/typedEffects'
 
 function* fetchBooks(action: SearchBooks): Generator<StrictEffect, any, any> {
   const controller = new AbortController()

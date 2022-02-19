@@ -1,4 +1,4 @@
-import { AuthConstants } from '../constants/auth.constants'
+import { AuthConstants } from 'redux/constants/auth.constants'
 
 export type AuthRequest = {
   type: AuthConstants.AUTH_REQUEST

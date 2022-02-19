@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BooksConstants } from '../redux/constants'
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { Book } from '../redux/types'
-import { createSubjectsQuery } from '../utils'
+
+import { useAppDispatch, useAppSelector } from 'redux/store'
+import { BooksConstants } from 'redux/constants'
+import { createSubjectsQuery } from 'utils'
+import { Book } from 'redux/types'
 
 const useBooks = () => {
   const { books, isLoading, subjects } = useAppSelector((state) => state.books)

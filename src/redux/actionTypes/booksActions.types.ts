@@ -1,5 +1,5 @@
-import { BooksConstants } from '../constants'
-import { Book } from '../types'
+import { BooksConstants } from 'redux/constants'
+import { Book } from 'redux/types'
 
 export type SearchBooks = {
   type: BooksConstants.SEARCH_BOOKS
