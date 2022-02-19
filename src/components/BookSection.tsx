@@ -5,7 +5,9 @@ const BookSection = ({ items, title }: { title: string; items: string[] }) => (
     <Text>{title}</Text>
     <Wrap>
       {items.slice(0, 4).map((subject) => (
-        <Tag colorScheme="whatsapp">{subject}</Tag>
+        <Tag colorScheme="whatsapp" key={subject}>
+          {subject}
+        </Tag>
       ))}
     </Wrap>
   </VStack>

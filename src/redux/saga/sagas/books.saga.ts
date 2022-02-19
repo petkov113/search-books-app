@@ -1,18 +1,19 @@
 import axios from 'axios'
 import {
-  all,
   call,
+  cancel,
   cancelled,
+  fork,
   select,
   StrictEffect,
-  takeLatest,
 } from 'redux-saga/effects'
 import { BooksConstants } from '../../constants'
 import { SearchBooks } from '../../actionTypes/booksActions.types'
-import { put } from '../utils/typedEffects'
+import { put, take } from '../utils/typedEffects'
 import { RootState } from '../../reducers.ts/root.reducer'
-import { createGeneralQuery } from '../../../utils'
+import { createGeneralQuery, isValidQuery } from '../../../utils'
 import { Book, BooksApiResponse } from '../../types'
+import { Task } from 'redux-saga'
 
 function* fetchBooks(action: SearchBooks): Generator<StrictEffect, any, any> {
   const controller = new AbortController()
@@ -45,5 +46,21 @@ function* fetchBooks(action: SearchBooks): Generator<StrictEffect, any, any> {
 }
 
 export function* booksSaga() {
-  yield all([takeLatest(BooksConstants.SEARCH_BOOKS, fetchBooks)])
+  let task: Task | undefined
+  while (true) {
+    const action: SearchBooks = yield take(BooksConstants.SEARCH_BOOKS)
+
+    if (task) {
+      yield cancel(task)
+    }
+
+    if (isValidQuery(action.query)) {
+      task = yield fork(fetchBooks, action)
+    } else {
+      yield put({
+        type: BooksConstants.SET_BOOKS,
+        books: [],
+      })
+    }
+  }
 }

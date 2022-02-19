@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import {
   Center,
   GridItem,
@@ -11,42 +10,24 @@ import {
 } from '@chakra-ui/react'
 import { BookCard, Loader } from '.'
 import { CATEGORIES } from '../constants'
-import { BooksConstants } from '../redux/constants'
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { createExploreQuery } from '../utils'
+import { useBooks } from '../hooks'
 
 const ExplorePage = () => {
-  const { books, isLoading, subjects } = useAppSelector((store) => store.books)
-  const dispatch = useAppDispatch()
+  const { books, isLoading, subjects, setSubjects } = useBooks()
 
   const handleTagClick = (category: string) => {
     const updatedSubjects = subjects.includes(category)
       ? subjects.filter((s) => s !== category)
       : [...subjects, category]
 
-    dispatch({
-      type: BooksConstants.SET_SUBJECTS,
-      subjects: updatedSubjects,
-    })
+    setSubjects(updatedSubjects)
   }
-
-  useEffect(() => {
-    subjects.length
-      ? dispatch({
-          type: BooksConstants.SEARCH_BOOKS,
-          query: createExploreQuery(subjects),
-        })
-      : dispatch({
-          type: BooksConstants.SET_BOOKS,
-          books: [],
-        })
-  }, [subjects, dispatch])
 
   return (
     <GridItem bg="gray.900" p={6} overflow="auto">
       <VStack spacing={6}>
         <Center>
-          <Heading color="teal.200">What Are Your Interests?</Heading>
+          <Heading color="teal.200">What are your interests?</Heading>
         </Center>
         <Wrap spacing={4}>
           {CATEGORIES.map((category) => (

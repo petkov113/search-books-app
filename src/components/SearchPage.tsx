@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react'
 import { Center, GridItem, SimpleGrid, VStack, Text } from '@chakra-ui/react'
-import { BooksConstants } from '../redux/constants'
-import { useAppDispatch, useAppSelector } from '../redux/store'
 import { BookCard, Loader, NamedInput } from './'
 import { createSearchQuery } from '../utils'
+import { useBooks } from '../hooks'
 
 const SearchPage = () => {
   const [titleValue, setTitleValue] = useState('')
   const [authorValue, setAuthorValue] = useState('')
   const [subjectValue, setSubjectValue] = useState('')
 
-  const { books, isLoading } = useAppSelector((state) => state.books)
-  const dispatch = useAppDispatch()
+  const { books, isLoading, setSearchQuery } = useBooks()
 
   const query = createSearchQuery(titleValue, authorValue, subjectValue)
 
   useEffect(() => {
-    query && dispatch({ type: BooksConstants.SEARCH_BOOKS, query })
-  }, [query, dispatch])
+    setSearchQuery(query)
+  }, [query, setSearchQuery])
 
   return (
     <GridItem bg="gray.900" p={3} overflow="auto">

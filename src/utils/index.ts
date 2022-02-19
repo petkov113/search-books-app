@@ -14,7 +14,7 @@ export const createSearchQuery = (
     ''
   )
 
-export const createExploreQuery = (subjects: string[]) =>
+export const createSubjectsQuery = (subjects: string[]) =>
   subjects
     .reduce(
       (acc, subject, i) => `${acc}${i === 0 ? '' : '+'}subject:${subject}`,
@@ -24,3 +24,8 @@ export const createExploreQuery = (subjects: string[]) =>
 
 export const createGeneralQuery = (query: string) =>
   `${SEARCH_URL}${encodeURI(query)}`
+
+export const isValidQuery = (query: string) =>
+  query &&
+  query !== createSubjectsQuery([]) &&
+  query !== createSearchQuery('', '', '')
