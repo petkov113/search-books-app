@@ -12,6 +12,7 @@ import { BookCard, Loader } from 'components'
 
 import { CATEGORIES } from '@constants'
 import { useBooks } from 'hooks'
+import { tagHoverStyles } from './Tag'
 
 const ExplorePage = () => {
   const { books, isLoading, subjects, setSubjects } = useBooks()
@@ -40,6 +41,7 @@ const ExplorePage = () => {
               colorScheme="purple"
               cursor="pointer"
               onClick={() => handleTagClick(category)}
+              _hover={tagHoverStyles}
             >
               <TagLabel textTransform="capitalize">{category}</TagLabel>
             </Tag>
