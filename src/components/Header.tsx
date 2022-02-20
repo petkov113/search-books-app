@@ -9,10 +9,10 @@ import {
   Spacer,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useAuthState } from 'hooks'
 
 import { AuthConstants } from 'redux/constants'
 import { useAppDispatch } from 'redux/store'
+import { useAuthState } from 'hooks'
 import { AuthForm } from 'components'
 
 enum AuthType {
