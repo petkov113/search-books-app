@@ -11,11 +11,17 @@ import {
 import { BookCard, Loader } from 'components'
 
 import { CATEGORIES } from '@constants'
-import { useBooks } from 'hooks'
+import { useIsElementVisible, useSubjectBooks } from 'hooks'
 import { tagHoverStyles } from './Tag'
+import { useRef } from 'react'
 
 const ExplorePage = () => {
-  const { books, isLoading, subjects, setSubjects } = useBooks()
+  const { books, isLoading, subjects, setSubjects, fetchMore, page } =
+    useSubjectBooks()
+  const showBooks = (page === 1 && !isLoading) || page > 1
+
+  const lastBookRef = useRef<HTMLDivElement | null>(null)
+  useIsElementVisible(lastBookRef, fetchMore)
 
   const handleTagClick = (category: string) => {
     const updatedSubjects = subjects.includes(category)
@@ -54,13 +60,19 @@ const ExplorePage = () => {
           w="100%"
           alignContent="center"
         >
-          {isLoading ? (
-            <Loader />
-          ) : (
-            books.map((book) => <BookCard key={book.key} book={book} />)
-          )}
+          {showBooks &&
+            books.map((book, index) => (
+              <BookCard
+                key={book.key}
+                book={book}
+                lastBookRef={
+                  index === books.length - 1 ? lastBookRef : undefined
+                }
+              />
+            ))}
         </SimpleGrid>
       </VStack>
+      <Loader isLoading={isLoading} />
     </GridItem>
   )
 }

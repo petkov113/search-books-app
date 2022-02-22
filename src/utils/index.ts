@@ -29,3 +29,9 @@ export const isValidQuery = (query: string) =>
   query &&
   query !== createSubjectsQuery([]) &&
   query !== createSearchQuery('', '', '')
+
+export const isLastPage = (count: number, currPage: number) => {
+  const resPerPage = 100
+
+  return Math.ceil(count / resPerPage) === currPage
+}

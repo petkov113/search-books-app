@@ -6,6 +6,7 @@ const initialState: BooksState = {
   books: [],
   isLoading: false,
   subjects: [],
+  count: 0,
 }
 
 export default function booksReducer(
@@ -28,6 +29,11 @@ export default function booksReducer(
       return {
         ...state,
         subjects: action.subjects,
+      }
+    case BooksConstants.SET_COUNT:
+      return {
+        ...state,
+        count: action.count,
       }
     default:
       return state

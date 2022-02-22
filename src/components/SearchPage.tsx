@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Center, GridItem, SimpleGrid, VStack, Text } from '@chakra-ui/react'
 
 import { BookCard, Loader, NamedInput } from 'components'
 import { createSearchQuery } from 'utils'
-import { useBooks } from 'hooks'
+import { useSearchBooks, useIsElementVisible } from 'hooks'
 
 const SearchPage = () => {
   const [titleValue, setTitleValue] = useState('')
   const [authorValue, setAuthorValue] = useState('')
   const [subjectValue, setSubjectValue] = useState('')
-
-  const { books, isLoading, setSearchQuery } = useBooks()
-
+  const { books, isLoading, setSearchQuery, fetchMore, page } = useSearchBooks()
   const query = createSearchQuery(titleValue, authorValue, subjectValue)
+
+  const lastBookRef = useRef<HTMLDivElement | null>(null)
+  useIsElementVisible(lastBookRef, fetchMore)
+
+  const showHeading = !query
+  const showBooks = (page === 1 && !isLoading) || page > 1
 
   useEffect(() => {
     setSearchQuery(query)
@@ -48,19 +52,26 @@ const SearchPage = () => {
           w="100%"
           alignContent="center"
         >
-          {!query ? (
+          {showHeading && (
             <Center>
               <Text fontSize="xl" color="purple.400">
                 All of the books in the world are here! 🎉
               </Text>
             </Center>
-          ) : isLoading ? (
-            <Loader />
-          ) : (
-            books.map((book) => <BookCard key={book.key} book={book} />)
           )}
+          {showBooks &&
+            books.map((book, index) => (
+              <BookCard
+                key={book.key}
+                book={book}
+                lastBookRef={
+                  index === books.length - 1 ? lastBookRef : undefined
+                }
+              />
+            ))}
         </SimpleGrid>
       </VStack>
+      <Loader isLoading={isLoading} />
     </GridItem>
   )
 }

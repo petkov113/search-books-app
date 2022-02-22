@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Ref } from 'react'
 import { Book } from 'redux/types'
 import { Box, Image, useDisclosure } from '@chakra-ui/react'
 
@@ -7,9 +7,10 @@ import { BookLinks, BookModal } from 'components'
 
 type BookCardProps = {
   book: Book
+  lastBookRef?: Ref<HTMLDivElement>
 }
 
-const BookCard: FC<BookCardProps> = ({ book }) => {
+const BookCard: FC<BookCardProps> = ({ book, lastBookRef }) => {
   const {
     isOpen: isBookModalOpen,
     onOpen: openBookModal,
@@ -25,6 +26,7 @@ const BookCard: FC<BookCardProps> = ({ book }) => {
         bg="purple.900"
         cursor="pointer"
         onClick={openBookModal}
+        ref={lastBookRef}
       >
         <Box
           backgroundImage={`url(${BOOK_COVER_URL})`}

@@ -21,4 +21,5 @@ export type BooksState = Readonly<{
   books: Book[]
   isLoading: boolean
   subjects: string[]
+  count: number
 }>

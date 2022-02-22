@@ -1,10 +1,15 @@
+import { FC } from 'react'
 import { Center, Spinner } from '@chakra-ui/react'
 
-const Loader = () => {
+const Loader: FC<{ isLoading: boolean }> = ({ isLoading }) => {
   return (
-    <Center>
-      <Spinner size="xl" color="teal.100" />
-    </Center>
+    <>
+      {isLoading && (
+        <Center>
+          <Spinner size="xl" color="teal.100" />
+        </Center>
+      )}
+    </>
   )
 }
 

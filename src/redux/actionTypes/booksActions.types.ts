@@ -4,7 +4,7 @@ import { Book } from 'redux/types'
 export type SearchBooks = {
   type: BooksConstants.SEARCH_BOOKS
   query: string
-  page?: number
+  page: number
 }
 
 export type SearchStart = {
@@ -21,4 +21,14 @@ export type SetSubjects = {
   subjects: string[]
 }
 
-export type BooksActions = SearchBooks | SetBooks | SearchStart | SetSubjects
+export type SetCount = {
+  type: BooksConstants.SET_COUNT
+  count: number
+}
+
+export type BooksActions =
+  | SearchBooks
+  | SetBooks
+  | SearchStart
+  | SetSubjects
+  | SetCount

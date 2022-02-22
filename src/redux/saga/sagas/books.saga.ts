@@ -31,13 +31,17 @@ function* fetchBooks(action: SearchBooks): Generator<StrictEffect, any, any> {
     )
 
     const books: Book[] = yield select((state: RootState) => state.books.books)
-    const updatedBooks = page
-      ? [...books, ...response.data.docs]
-      : response.data.docs
+
+    const updatedBooks =
+      page > 1 ? [...books, ...response.data.docs] : response.data.docs
 
     yield put({
       type: BooksConstants.SET_BOOKS,
       books: updatedBooks,
+    })
+    yield put({
+      type: BooksConstants.SET_COUNT,
+      count: response.data.numFound,
     })
   } finally {
     if (yield cancelled()) {
