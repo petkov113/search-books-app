@@ -12,18 +12,18 @@ type BookModalProps = {
 }
 
 const BookModal: FC<BookModalProps> = ({ isOpen, onClose, book }) => {
+  const title = book?.title || ''
+  const coverSrc = `${COVERS_URL}${book.isbn?.[0]}-L.jpg`
+  const placeholderCoverSrc = `url(${BOOK_COVER_URL})`
+  const author = book.author_name?.[0] || 'Unknown'
+
   return (
-    <Modal
-      title={book?.title || ''}
-      isOpen={isOpen}
-      onClose={onClose}
-      size="xl"
-    >
+    <Modal title={title} isOpen={isOpen} onClose={onClose} size="xl">
       <ModalBody pb={6} color="gray.200">
         <Flex wrap="wrap" justifyContent="center" pb={3}>
           <VStack mb={1}>
             <Box
-              backgroundImage={`url(${BOOK_COVER_URL})`}
+              backgroundImage={placeholderCoverSrc}
               backgroundSize="cover"
               backgroundPosition="center"
               maxW="250px"
@@ -32,7 +32,7 @@ const BookModal: FC<BookModalProps> = ({ isOpen, onClose, book }) => {
             >
               {book.isbn?.[0] && (
                 <Image
-                  src={`${COVERS_URL}${book.isbn?.[0]}-L.jpg`}
+                  src={coverSrc}
                   alt="book cover"
                   width="100%"
                   objectFit="cover"
@@ -48,7 +48,7 @@ const BookModal: FC<BookModalProps> = ({ isOpen, onClose, book }) => {
               textAlign="center"
               textTransform="uppercase"
             >
-              {book.author_name?.[0] || 'Unknown'}{' '}
+              {author}{' '}
               {book.first_publish_year && (
                 <span>&bull; {book.first_publish_year}</span>
               )}

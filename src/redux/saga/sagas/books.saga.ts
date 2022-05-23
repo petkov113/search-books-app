@@ -52,6 +52,7 @@ function* fetchBooks(action: SearchBooks): Generator<StrictEffect, any, any> {
 
 export function* booksSaga() {
   let task: Task | undefined
+
   while (true) {
     const action: SearchBooks = yield take(BooksConstants.SEARCH_BOOKS)
 

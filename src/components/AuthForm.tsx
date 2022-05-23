@@ -97,7 +97,7 @@ const AuthForm: FC<AuthFormProps> = ({ isOpen, onClose, isLogin }) => {
               {errors.email && errors.email.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl mt={4} isInvalid={!!errors.password}>
+          <FormControl mt={4} isInvalid={Boolean(errors.password)}>
             <FormLabel htmlFor="password" color="gray.200">
               Password
             </FormLabel>
@@ -128,7 +128,7 @@ const AuthForm: FC<AuthFormProps> = ({ isOpen, onClose, isLogin }) => {
           </FormControl>
           {!isLogin && (
             <>
-              <FormControl mt={4} isInvalid={!!errors.confirmedPassword}>
+              <FormControl mt={4} isInvalid={Boolean(errors.confirmedPassword)}>
                 <FormLabel htmlFor="passwordConfirmation" color="gray.200">
                   Password confirmation
                 </FormLabel>
@@ -189,7 +189,7 @@ const AuthForm: FC<AuthFormProps> = ({ isOpen, onClose, isLogin }) => {
             isLoading={isLoading}
             type="submit"
           >
-            Sumbmit
+            Submit
           </Button>
           <Button onClick={onCancel}>Cancel</Button>
         </ModalFooter>
